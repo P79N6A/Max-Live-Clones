@@ -32,7 +32,7 @@ public:
 	COleTemplateServer m_server;
 		// Server object for document creation
 	afx_msg void OnAppAbout();
-	afx_msg void OnFileNewFrame();
+	afx_msg void OnFileNewPatch();
 	afx_msg void OnFileNew();
 	DECLARE_MESSAGE_MAP()
 };

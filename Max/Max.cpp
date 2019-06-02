@@ -20,7 +20,7 @@
 
 BEGIN_MESSAGE_MAP(CMaxApp, CWinApp)
 	ON_COMMAND(ID_APP_ABOUT, &CMaxApp::OnAppAbout)
-	ON_COMMAND(ID_FILE_NEW_FRAME, &CMaxApp::OnFileNewFrame)
+	ON_COMMAND(ID_FILE_NEW_PATCH, &CMaxApp::OnFileNewPatch)
 	ON_COMMAND(ID_FILE_NEW, &CMaxApp::OnFileNew)
 	// Standard file based document commands
 	ON_COMMAND(ID_FILE_OPEN, &CWinApp::OnFileOpen)
@@ -236,7 +236,7 @@ void CMaxApp::OnAppAbout()
 
 // CMaxApp message handlers
 
-void CMaxApp::OnFileNewFrame()
+void CMaxApp::OnFileNewPatch()
 {
 	ASSERT(m_pDocTemplate != nullptr);
 
