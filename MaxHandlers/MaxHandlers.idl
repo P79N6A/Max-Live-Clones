@@ -1,0 +1,69 @@
+// MaxHandlers.idl : IDL source for MaxHandlers
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (MaxHandlers.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(c086684c-7bac-4fd9-b8f1-3775482715ee),
+	pointer_default(unique)
+]
+interface IPreview : IUnknown
+{
+};
+
+[
+	object,
+	uuid(0bb30d35-7d43-480b-959a-0410b9ccb0c2),
+	pointer_default(unique)
+]
+interface IThumbnail : IUnknown
+{
+};
+
+[
+	object,
+	uuid(c18fc64e-fadc-4412-a5da-8b53deb50ce6),
+	pointer_default(unique)
+]
+interface ISearch : IUnknown
+{
+};
+
+[
+	uuid(df383a3d-d5f6-4b95-9baf-2347b5bcff4a),
+	version(1.0),
+]
+library MaxHandlersLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(1b3e003f-b21f-48a2-8a4f-0b25f951a55e)
+	]
+	coclass Preview
+	{
+		[default] interface IPreviewHandler;
+	};
+	[
+		uuid(8d6814f0-c8a4-4edc-825a-be53fcd632ff)
+	]
+	coclass Thumbnail
+	{
+		[default] interface IThumbnailProvider;
+	};
+	[
+		uuid(e9cd75fd-86c8-4f8d-b026-7b9617adc91a)
+	]
+	coclass Search
+	{
+		[default] interface IFilter;
+	};
+};
+
+import "shobjidl.idl";
+import "thumbcache.idl";
+import "filter.idl";

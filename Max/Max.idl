@@ -1,0 +1,29 @@
+// Max.idl : type library source for Max.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (Max.tlb).
+
+[ uuid(df383a3d-d5f6-4b95-9baf-2347b5bcff4a), version(1.0) ]
+library Max
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	//  Primary dispatch interface for CMaxDoc
+
+	[ uuid(154f045e-9521-44aa-9189-668937649755) ]
+	dispinterface IMax
+	{
+		properties:
+
+		methods:
+	};
+
+	//  Class information for CMaxDoc
+
+	[ uuid(f662fbbe-6b84-4f6e-82d5-abb7c5097392) ]
+	coclass CMaxDoc
+	{
+		[default] dispinterface IMax;
+	};
+};
