@@ -1,0 +1,29 @@
+// Live.idl : type library source for Live.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (Live.tlb).
+
+[ uuid(03e90ab2-e96e-400c-9b30-57853334a32c), version(1.0) ]
+library Live
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	//  Primary dispatch interface for CLiveDoc
+
+	[ uuid(b817d34a-2378-4b9f-bf22-880fb5b694fe) ]
+	dispinterface ILive
+	{
+		properties:
+
+		methods:
+	};
+
+	//  Class information for CLiveDoc
+
+	[ uuid(a1b59a21-a01a-4f1a-86eb-a1ae27387b8a) ]
+	coclass CLiveDoc
+	{
+		[default] dispinterface ILive;
+	};
+};
