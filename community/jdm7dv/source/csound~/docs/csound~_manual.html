@@ -1,0 +1,1245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+  <title>Csound~ Manual</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" link="#222288" alink="#444488" vlink="#444488">
+
+<font face="tahoma" size="2">
+<a href="csound%7E.html">csound~</a> | <a href="csound%7E_install.html">Install</a> | <a href="csound%7E_troubleshoot.html">Troubleshooting</a>
+</font>
+<p><font color="#202d3d" face="arial, helvetica" size="5"><b><i>csound~ Manual</i></b></font></p>
+
+<font face="tahoma" size="2">
+This is the manual for <b>csound~ v1.0.7</b>. <br />
+Manuals for earlier versions are contained within their respective archive files.</font></p>
+
+<a href="#csound_general">What is csound~?</a><br />
+<br />
+<a href="#csound_arguments_new">Arguments for csound~ (NEW)</a><br />
+<br />
+<a href="#csound_arguments">Arguments for csound~ (OLD)</a><br />
+<br />
+<a href="#inlets_outlets">Inlets &amp; Outlets</a><br />
+<br />
+<a href="#csound_flags">Csound Flags</a><br />
+<br />
+<a href="#csound_score_events">Csound Score Events</a><br />
+<br />
+<a href="#midi">MIDI</a><br />
+<br />
+<a href="#win_path">Pathnames in Windows</a><br />
+<br />
+<a href="#mac_path">Pathnames in Mac OSX</a><br />
+<br />
+<a href="#recording_and_playing">Recording &amp; Playing Events</a><br />
+<br />
+<a href="#where_to_put_patch">Where to Put Your MaxMSP Patch</a><br />
+<br />
+<a href="#latency_issues">Latency Issues</a><br />
+<br />
+<a style="font-weight: bold; font-style: italic; color: rgb(255, 0, 0);" href="#tips">Tips</a><br />
+<br />
+<a href="#message_table">Table of csound~ Messages</a><br />
+<br />
+<hr style="width: 100%; height: 2px;"><br />
+<p>
+<table border="0" cellpadding="4" cellspacing="2">
+  <colgroup><col width="110"><col width="750"></colgroup>
+  <tbody>
+    <tr>
+      <td style="text-align: center; width: 20%; vertical-align: top; background-color: rgb(255, 255, 255);">
+      <font face="times" size="4"><b>&nbsp;What is csound~?</b></font></td>
+
+      <td style="background-color: rgb(220, 244, 220);"> <font face="tahoma" size="2"><a name="csound_general"></a>
+		csound~ is a MaxMSP external that runs Csound5. It facilitates communication of audio, control, and MIDI data to/from Csound.
+		Each csound~ object runs one instance of Csound, and you can have multiple
+		csound~'s running at the same time.</font></p>
+      <p><font face="tahoma" size="2">
+		csound~ can be used to create an effects processor, synthesizer, orchestra player/renderer, etc... .
+		&nbsp; Create a GUI in Max, "link" it up to csound~, and voila!
+		</font></p>
+      <p><font face="tahoma" size="2">csound~
+		accepts audio, MIDI, control data, and Csound events. This data can
+		be accessed from inside your Csound orchestra. csound~ also outputs
+		various forms of data from Csound. This includes audio, MIDI, and control data. &nbsp; </font></p>
+      <p></p>
+      </td>
+    </tr>
+	<tr>
+      <td style="text-align: center; vertical-align: top; background-color: rgb(255, 255, 255);">
+		<font size="+1"><span style="font-weight: bold;"><a name="csound_arguments_new"></a>Arguments for csound~ (NEW)</span></font></td>
+      <td style="background-color: rgb(228, 230, 255);">
+	  <font face="tahoma" size="2">
+      <p>
+		As of v1.0.7, you can add attributes and the Csound command line arguments to [csound~].
+	  </p>
+      <p>
+		<i>Example:</i><br />
+		<b>[csound~ hello.csd @scale 0 @i 1 @o 2]</b> : No scaling, 1 signal inlet, 2 signal outlets.<br />
+		<b>[csound~ "fun.csd -m0" @io 2 @overdrive 1]</b> : 2 signal inlets, 2 signal outlets, overdrive enabled.<br />
+	  </p>
+	  <p>
+	  	If you specify a csd/orc/sco file(s) in the argument list, you must still send "start" or "bang"
+		to compile and start the performance.
+	  </p>
+	  <p>
+	  	<i>Attributes:</i><br /><br />
+		<b>@i</b> : The # of signal inlets. (default = 2) <br /><br />
+		<b>@input</b> : Enable/Disable invalue/chnget processing. (default = 1) <br /><br />
+		<b>@interval</b> : The millisecond interval that determines the rate of message output from [csound~].
+							"@overdrive 1" overrides this setting. (default = 1ms) <br />
+		<b>@io</b> : The # of signal inlets and outlets. (default = 2) <br /><br />
+ 		<b>@message</b> : Enable/Disable output to the Max window. (default = 1) <br /><br />
+		<b>@o</b> : The # of signal outlets. (default = 2) <br /><br />
+		<b>@output</b> : Enable/Disable outvalue/chnset processing. (default = 1) <br /><br />
+		<b>@overdrive</b> : Enable/Disable overdrive mode. (default = 0) <br /><br />
+		<b>@scale</b> : Enable/Disable scaling of audio. (default = 1) <br />
+						"@scale 0" means that audio data is not scaled between csound~ and
+						Csound. By default, audio data passed to Csound is multiplied by Csound's 0dB level, and
+						audio data received from Csound is divided by Csound's 0dB level. Disabling this feature is
+						useful if you're already treating 1.0 as 0dB in your Csound	orchestra.  To set 1.0 as 0dB, 
+						add "0dbfs = 1" to the orchestra header.<br /><br />
+		<b>@start</b> : Enable/Disable automatic compilation and starting of Csound performance. (default = 0)<br />
+						Must provide csd/orc/sco file in argument list for "@start 1" to work.
+						If your orchestra requires certain control values to be initialized before the
+						performance has started, don't use "@start 1". <br />
+	  </p>	
+
+	  </font>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center; vertical-align: top; background-color: rgb(255, 255, 255);">
+		<font size="+1"><span style="font-weight: bold;"><a name="csound_arguments"></a>Arguments for csound~ (OLD)</span></font></td>
+      <td style="background-color: rgb(220, 244, 220);">
+      <p><font face="tahoma" size="2">
+		0 int argument(s): 2 signal inlets/outlets.<br />
+		1 int argument(s): # of signal inlets/outlets.<br />
+		2 int argument(s): # signal inlets and # of signal outlets respectively.<br />
+		"noscale": If present, don't scale audio from [-1, 1] to Csound's 0dB level.</font></p>
+      <p><font face="tahoma" size="2">
+		<i>Example:</i><br />
+		<b>[csound~ noscale 1 4]</b> : No scaling, 1 signal inlet, 4 signal outlets.
+		</font></p>
+	  <p><font face="tahoma" size="2">	
+		Adding the "noscale" flag means that audio data is not scaled between csound~ and
+		Csound. By default, audio data passed to Csound is multiplied by Csound's 0dB level, and
+		audio data received from Csound is divided by Csound's 0dB level. The
+		"noscale" flag allows this feature to be bypassed. &nbsp;This is
+		useful if you're already treating 1.0 as 0dB in your Csound
+		orchestra.  To set 1.0 as 0dB, add "0dbfs = 1" to the orchestra header.</font></p>
+      <p></p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center; vertical-align: top; background-color: rgb(255, 255, 255);">
+      <font face="times" size="4"><b><a name="inlets_outlets"></a> Inlets &amp; Outlets </b></font></td>
+
+      <td style="background-color: rgb(228, 230, 255);"> <font face="tahoma" size="2">
+		The # of inlets always equals the # of signal inlets.
+		The first inlet is special in that it accepts messages, integers (MIDI
+		bytes) as well as an audio signal. See the <a href="#message_table">table</a> below for a complete
+		list of recognized messages. </font>
+      <p><font face="tahoma" size="2">
+		The <span style="font-weight: bold;">rightmost outlet</span> sends a bang when the score is finished, or when the
+		csound performance is stopped prematurely by the user with the "stop"
+		message. </font></p>
+      <p><font face="tahoma" size="2">
+		The <span style="font-weight: bold;">second from right</span>
+		outlet sends a bang when a csd/orc is successfully
+		compiled. This bang is useful if you need to initialize Csound MIDI
+		control opcodes with data stored in your Max patch. </font></p>
+      <p><font face="tahoma" size="2">
+		The <span style="font-weight: bold;">third from right
+		outlet</span> sends MIDI bytes received from Csound. To enable
+		MIDI output from this outlet, you must add the flag "-Q0" to
+		the&nbsp;</font><font face="tahoma" size="2"><a href="#message_csound">"csound"</a></font><font face="tahoma" size="2"> message. </font></p>
+      <p><font face="tahoma" size="2">
+		The <span style="font-weight: bold;">fourth from right
+		outlet</span> sends two element messages. The first element
+		is a symbol and the second is a floating point value. The outvalue/chnset
+		opcodes in a csd/orc file will output values via this outlet. Outvalue
+		processing must be enabled for this feature to work (see <a href="#message_output">"output"</a>).
+		An outvalue/chnset opcode will only output messages when there
+		is at least one active instance of the containing instrument.
+		Outvalue pairs are output every 50ms, by default.
+		To output pairs as soon as possible, send the message <a href="#message_overdrive">"overdrive 1"</a>
+		to csound~. </font></p>
+      <p><font face="tahoma" size="2">
+        All <span style="font-weight: bold;">other outlets</span> are signal outlets. </font></p>
+      <p><font face="tahoma" size="2">
+In order to access audio signals from MSP inside Csound, use the <b>inch</b>
+opcode. Audio sent to the leftmost inlet corresponds to channel 1. To
+send audio to csound~'s outlets, I recommend using the
+<b>outch</b> opcode. Audio sent out channel 1 will be received in the leftmost
+outlet. </font></p>
+
+      <p></p>
+
+      <p><font face="tahoma" size="2">
+By default, audio data is scaled between csound~ and Csound.  In MaxMSP, 0dB == 1.0.  In Csound,
+0dB == 32768.0 (unless the user has changed the 0dB level with the <b>0dbfs</b> opcode).
+To bypass scaling, add the "noscale" flag to csound~'s argument list.</font></p>
+
+<p><font face="tahoma" size="2" color="#bb2222">
+When using chnset, you must declare all output channels in the orchestra
+header using the chn_k opcode.
+</font></p>
+
+      <p></p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center; vertical-align: top; background-color: rgb(255, 255, 255);">
+      <font size="+1"><span style="font-weight: bold;"><a name="csound_flags"></a>Csound Flags</span></font></td>
+      <td style="background-color: rgb(220, 244, 220);"> <font face="tahoma" size="2">
+		In most situations, you won't need to add any flags to your <a href="#message_csound">"csound"</a>
+		message. Since csound~ handles the communication of data, flags such as [-i, -o, -M, -L, -B, -b] are
+		not needed.
+		<br />
+		<br />
+		If you're wondering what
+		flags to add to the&nbsp;</font><font face="tahoma" size="2"><a href="#message_csound">"csound"</a></font><font face="tahoma" size="2"> message, my short answer is:
+		none.
+		&nbsp;Just start with something like: <br />
+		<br />
+		&nbsp; &nbsp; &nbsp;<b>csound hello.csd</b><br />
+		<br />
+		and you should be fine (as long as your csd/orc/sco files are in the
+		same directory as your MaxMSP patch). For more detailed
+		information, see the&nbsp;</font><font face="tahoma" size="2"><a href="#message_csound">"csound"</a>
+		message description.</font> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center; vertical-align: top; background-color: rgb(255, 255, 255);">
+      <font face="times" size="4"><b><a name="csound_score_events"></a> Csound Score Events </b></font></td>
+      <td style="background-color: rgb(228, 230, 255);"> <font face="tahoma" size="2">
+		csound~ accepts score events using the <a href="#message_event">"event"</a> message.
+		Using this feature, you can send almost any type of score event in realtime.
+		<p>
+		<font face="tahoma" size="2" color="#bb2222">
+		When csound~ is running in non-realtime mode (i.e. when	rendering to a file), "event" messages are ignored.
+		</font>
+		</p>
+      </font>
+	  </td>
+    </tr>
+    <tr>
+      <td style="text-align: center; vertical-align: top; background-color: rgb(255, 255, 255);"><font face="times" size="4"><b><a name="midi"></a>MIDI
+      </b></font></td>
+      <td style="background-color: rgb(220, 244, 220);"><font face="tahoma" size="2">
+		csound~ accepts integers in its leftmost inlet as part of a MIDI byte
+		stream. An alternative is to use the <a href="#message_midi">"midi"</a>
+		message. When using this message, make sure each message contains a complete
+		MIDI event. For example, a NoteOn event needs exactly 3
+		integers (e.g. "midi 144 64 127"). csound~ is able to process
+		these types of MIDI data: NoteOn, NoteOff, PitchBend, Aftertouch,
+		ControlChange, ProgramChange, and ChannelAftertouch. csound~
+		will ignore Sysex data.</font>
+      <p><font face="tahoma" size="2">
+		Remember to send initializing MIDI control values AFTER the csound
+		orchestra has been compiled. When an orchestra has been
+		compiled, a "bang" is sent out the second from right outlet.
+		Use this "bang" to trigger your UI elements (faders, knobs,
+		etc...) so that your MIDI opcodes (in your orchestra) are
+		properly initialized. Otherwise, you may hear nothing,
+		something weird, or something very LOUD!!</font></p>
+      <p><font face="tahoma" size="2"> </font></p>
+      </td>
+    </tr>
+	<tr>
+      <td style="text-align: center; vertical-align: top; background-color: rgb(255, 255, 255);">
+		<font face="times" size="4"><b><a name="win_path"></a>
+		Pathnames in Windows
+		</b></font></td>
+      <td style="background-color: rgb(228, 230, 255);"><font face="tahoma" size="2">
+		In Windows, csound~ works with Max style paths.
+		The default Max path style is very similar to the Windows path style.  The only
+		difference is the type of slash.  Max uses forward slashes (/) and Windows uses back slashes (\).
+		Since csound~ and Csound5 both work with forward slashes, you can make things easier on yourself
+		by sticking with forward slashes. Here's an example of the path style you should use:
+		</font>
+		<br /> <br />
+		<font face="courier" size="2">
+		&nbsp;&nbsp;&nbsp;D:/samples/achtung<br /><br />
+		</font>
+      </td>
+    </tr>
+	<tr>
+      <td style="text-align: center; vertical-align: top; background-color: rgb(255, 255, 255);">
+		<font face="times" size="4"><b><a name="mac_path"></a>
+		Pathnames in Mac OSX
+		</b></font></td>
+      <td style="background-color: rgb(220, 244, 220);"><font face="tahoma" size="2">
+		In MacOSX, csound~ works with either Max or POSIX style paths (as of v1.0.6).
+		A typical Max style path:<br /><br />
+		</font>
+		<font face="courier" size="2">
+		&nbsp;&nbsp;&nbsp;MyFireWireHD:/samples/achtung<br /><br />
+		</font>
+		<font face="tahoma" size="2">
+		and its POSIX equivalent:<br /><br />
+		</font>
+		<font face="courier" size="2">
+		&nbsp;&nbsp;&nbsp;/Volumes/MyFireWireHD/samples/achtung<br /><br />
+		</font>
+		<font face="tahoma" size="2">	
+		When you give csound~ a Max style path, it will convert it to a POSIX path internally.
+		<br /><br />
+		<i>When specifying an output audio file in your "csound" message, make sure you put
+		a space between "-o" and the filename if the filename is a Max style absolute path.</i>
+		<br /><br />
+		</font>	
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center; vertical-align: top; background-color: rgb(255, 255, 255);">
+		<font size="+1"><span style="font-weight: bold;"><a name="recording_and_playing"></a>
+		Recording &amp; Playing Events</span></font></td>
+      <td style="background-color: rgb(228, 230, 255);"><font face="tahoma" size="2">
+		You can record MIDI data,&nbsp;</font><font face="tahoma" size="2"><a href="#message_control">"control"</a></font><font face="tahoma" size="2"> messages, and&nbsp;</font><font face="tahoma" size="2"><a href="#message_event">"event"</a></font><font face="tahoma" size="2"> messages, play them back, and
+		save a recorded sequence to a file. <br /><br />
+		Start recording with the <a href="#message_recordstart">"recordstart"</a>
+		message and stop with <a href="#message_recordstop">"recordstop"</a>.
+		&nbsp;To play/stop a recording, use the <a href="#message_playstart">"playstart"</a> and <a href="#message_playstop">"playstop"</a> messages.
+		&nbsp;To save/load a recorded sequence, use the <a href="#message_read">"read"</a> and <a href="#message_write">"write"</a> messages.
+		&nbsp;For detailed information on related messages, consult the <a href="#message_table">table of csound messages</a>
+		below. <br />
+		<br />
+		This feature was originally added to make the creation of high-quality
+		non-realtime rendering of realtime performances easier.
+
+		The idea was to capture a performance using low-quality instruments
+		that don't tax the cpu, then render that performance in non-realtime
+		using high-quality/cpu-intensive instruments. As such, there
+		aren't many extra features... but it works. <br />
+		<br />
+		Here are some miscellaneous facts:<br />
+		<br />
+		</font><font face="tahoma" size="2"><li>The maximum recording time is 60 minutes.<br />
+		<br />
+		</font><font face="tahoma" size="2">
+		<li>The timing resolution of recorded events is
+		approximately 1ms. &nbsp;<br />
+		<br />
+		<li>The recorded data is saved in binary
+		format, not text (this may change in the future).<br />
+		<br />
+		<li>If you start a non-realtime rendering
+		(e.g. by adding "-o SomeFileName.aif" to your</font><font face="tahoma" size="2"><a href="#message_csound">"csound"</a></font>
+		<font face="tahoma" size="2">message) and csound~ has a recorded sequence in memory, that sequence will be played back along with the rendering.<br />
+        <br /></font>
+     </td>
+
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; vertical-align: top;">
+		<font face="times" size="4"><b><a name="where_to_put_patch"></a>Where to Put Your MaxMSP Patch</b></font></td>
+
+      <td style="background-color: rgb(220, 244, 220);"><font face="tahoma" size="2">
+		Where you put your patch may affect csound~'s ability to find your csd/orc/sco files.
+		If your patch is within the Max search path, csound~ may not
+		be able to find your csd/orc/sco file(s). Here are some
+		example <a href="#message_csound">"csound"</a> messages:<br />
+		<br />
+		&nbsp; &nbsp; &nbsp;<b>csound hello.csd</b><br />
+		<br />
+		In this example, "hello.csd" must be in the same directory as your patch.
+		If your patch is inside Max's search path, Max will search within
+		the search path and open the first file called "hello.csd" that it finds (take
+		care not to have multiple csd's with the same name in the search path).
+		<br />
+		<br />
+		&nbsp; &nbsp; &nbsp;<b>csound /Users/george/CsoundStuff/hello.csd</b><br />
+		<br />
+		In this example, an absolute pathname is used to specify the location
+		of your CSD file. This will always work no matter where your
+		patch is located. By the way, on MacOSX, external drives are rooted in the /Volumes folder.<br />
+		<br />
+		&nbsp; &nbsp; &nbsp;<b>csound version3/hello.csd</b> <br />
+		<br />
+		In this example, a relative pathname is being used. This will only work
+		when your patch is outside Max's search path.<br />
+		<br />
+		If you're still confused, or you don't know what the Max search path is, then here's my suggestion:<br />
+		<br />
+		&nbsp; &nbsp; &nbsp;<b>1</b>)
+		Create a directory in your home directory and put your patch in it.<br />
+		<br />
+		&nbsp; &nbsp; &nbsp;<b>2</b>)
+		Place your csd/orc/sco file(s) in the same directory.<br />
+		<br />
+		&nbsp; &nbsp; &nbsp;<b>3</b>)
+		Make your "csound" message look like this:
+		<br /><br />
+		&nbsp; &nbsp; &nbsp; &nbsp; "<b>csound hello.csd</b>" or "<b>csound hello.orc hello.sco</b>".<br />
+		<br />
+        These steps should work for most users.<br />
+
+      <br />
+      </font></td>
+    </tr>
+	<tr>
+		<td style="text-align: center; vertical-align: top; background-color: rgb(255, 255, 255);">
+			<font face="times" size="4"><b><a name="latency_issues"></a>Latency Issues</b></font>
+		</td>
+		<td style="background-color: rgb(228, 230, 255);"> <font face="tahoma" size="2">
+			If the ksmps value set in your orchestra evenly divides the Max signal vector size,
+			then [csound~] will run in zero-latency mode.  In other words, it will not delay
+			the audio being processed.
+			<p>
+			If ksmps does NOT evenly divide the Max signal vector size, ksmps samples of delay
+			will be added to the processed audio.
+			</p>
+			<p>
+			[csound~] message outlet will only output messages at the current rate, which you can
+			set with the "interval" message or @interval attribute.  The default value is 1ms.  If
+			that's not enough, use overdrive mode.  If latency is not an issue, or the interval of
+			1ms is taxing your system, increase the interval.
+			</p>
+		</td>
+	</tr>
+    <tr>
+      <td style="text-align: center; vertical-align: top; background-color: rgb(255, 255, 255);">
+      <font face="times" size="4"><b><a name="tips"></a>Tips </b></font></td>
+      <td style="background-color: rgb(220, 244, 220);"> <font face="tahoma" size="2">
+
+		<p>
+		Immediately after creating a new patch, there's no way to determine which folder contains that patch.
+		After you add a [csound~] external to the new patch, save it, then re-open it.  That way, [csound~]
+		will know which folder contains the patch.  This is important if you're using relative paths to specify
+		your csd/orc/sco files.
+		</p>
+		
+		<hr style="width: 100%; height: 2px;">
+		
+		<p>
+		
+		</p>
+		
+		If you're concerned about performance (perhaps in a live situation), then
+		disable csound message output by passing "message 0" to csound~, or by
+		adding the flag "-m0" to your </font><font face="tahoma" size="2"><a href="#message_csound">"csound"</a></font><font face="tahoma" size="2"> message. This will prevent
+		Csound from printing to the Max window. The
+		same goes for <b>outvalue</b> and <b>chnset</b> processing, which can be disabled with "output 0".
+		<b>invalue</b> and <b>chnget</b> processing can be disabled with "input 0". Alternatively, you
+		could comment out these types of opcodes in your orchestra.</font>
+      <p></p>
+
+      <hr style="width: 100%; height: 2px;">
+      <p></p>
+
+      <p><font face="tahoma" size="2"> If you
+make changes to a csd/ord/sco file, but the name and location haven't
+changed, then simply sending "start", "bang", or "reset" will recompile the file
+and re-start the performance; you don't have to re-send the&nbsp;</font><font face="tahoma" size="2"><a href="#message_csound">"csound"</a></font><font face="tahoma" size="2">
+message. </font></p>
+
+      <p></p>
+
+      <hr style="width: 100%; height: 2px;">
+      <p></p>
+
+      <p><font face="tahoma" size="2" color="#bb2222">Never put csound~.mxo or csound~.mxe in the same directory as your MaxMSP patch. </font></p>
+
+      <p></p>
+
+      <hr style="width: 100%; height: 2px;">
+      <p></p>
+
+      <p><font face="tahoma" size="2">For
+greater timing accuracy of MIDI, <a href="#message_event">"event"</a>
+messages, and <a href="#message_control">"control"</a>
+messages to/from csound~:</font></p>
+
+      <p><font face="tahoma" size="2">&nbsp;&nbsp;&nbsp;
+      <span style="font-style: italic;">Lower your
+orchestra ksmps (i.e. increase kr).</span></font></p>
+
+      <p style="font-style: italic;"><font face="tahoma" size="2">&nbsp;&nbsp;&nbsp; Decrease the MSP
+signal vector size </font><font face="tahoma" size="2">(Options
+-&gt; DSP
+Status...)</font><font face="tahoma" size="2">.</font></p>
+
+      <p style="font-style: italic;"><font face="tahoma" size="2">&nbsp;&nbsp;&nbsp; Enable "Max
+Scheduler In Overdrive" in the Options menu.&nbsp;</font></p>
+
+      <p style="font-style: italic;"><font face="tahoma" size="2">&nbsp;&nbsp;&nbsp; Enable "Scheduler In
+Audio Interrupt" in the DSP Status window (Options -&gt; DSP
+Status...).&nbsp;</font></p>
+
+      <p style="font-style: italic;"><font face="tahoma" size="2">&nbsp;&nbsp;&nbsp; Send the message
+"overdrive 1" to csound~.</font></p>
+
+      <p><font face="tahoma" size="2">To
+minimize timing latency, decrease the I/O vector size in MaxMSP
+(Options -&gt; DSP Status...). As is often the case,
+there is no best combination of settings for all
+contingencies. To find the best settings for a particular
+situation, set things up for maximum timing accuracy and minimum
+latency, then scale back if the audio is breaking up.</font></p>
+
+      <hr style="width: 100%; height: 2px;">
+      <p><span style="font-family: tahoma;"></span><font face="tahoma" size="2">
+If you have a polyphonic Csound instrument that uses k-rate data from <b>invalue</b>
+or <b>chnget</b>, you can reduce redundancy by using global variables and
+creating an always-on instrument
+to contain the <b>invalue</b>/<b>chnget</b> opcodes. This new
+instrument should have a smaller instrument # than your polyphonic
+instrument. Set things up so that the <b>invalue</b>/<b>chnget</b> opcodes
+write to global variables and change your polyphonic instrument to
+access those variables. For example:</font></p>
+
+      <font face="tahoma" size="2">&nbsp;&nbsp;&nbsp; <span style="font-family: Courier New,Courier,monospace;">&nbsp; <span style="font-family: Courier New; font-weight: bold;">; always-on
+instrument</span></span><br style="font-family: Courier New; font-weight: bold;">
+
+      <span style="font-family: Courier New; font-weight: bold;">&nbsp;&nbsp;&nbsp;
+instr 1</span><br style="font-family: Courier New; font-weight: bold;">
+
+      <span style="font-family: Courier New; font-weight: bold;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; gkfrq
+chnget "frq"</span><br style="font-family: Courier New; font-weight: bold;">
+
+      <span style="font-family: Courier New; font-weight: bold;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; gkfilterQ
+chnget "Q"</span><br style="font-family: Courier New; font-weight: bold;">
+
+      <span style="font-family: Courier New; font-weight: bold;">&nbsp;&nbsp;&nbsp;
+endin</span></font>
+      <p style="font-family: Courier New; font-weight: bold;"><font size="2">&nbsp;&nbsp;&nbsp; ; polyphonic
+instrument<br />
+
+&nbsp;&nbsp;&nbsp; instr 2<br />
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ifrq
+cpsmidi<br />
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; a1 vco 1,
+ifrq, 1<br />
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; aout
+svfilt a1, gkfrq, gkfilterQ<br />
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; outs
+aout, aout<br />
+
+&nbsp;&nbsp;&nbsp; endin</font>&nbsp;
+&nbsp;</p>
+
+      <hr style="width: 100%; height: 2px;">
+      <p><font face="tahoma" size="2">The <a href="#message_event">"event"</a> message allows you
+to load/replace Csound f-tables in realtime.  However, Csound
+may crash when you are replacing a table that is being
+accessed by an instrument.
+<p>
+One crash-free solution is to use the
+<a href="#message_event">"loadsamp"</a> message with a positive table argument.
+
+<p>
+Another solution is to make sure
+there aren't any active instruments using that table.  If you
+have an instrument that's activated by MIDI, then flush all MIDI notes
+and wait until all active instances are inactive.  If your
+instrument is score activated, then use the turnoff or turnoff2 opcodes
+to deactivate active instances (or just wait until their durations
+expire). </font></p>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+</p>
+
+<p></p>
+
+<p></p>
+
+<hr style="width: 100%; height: 2px;">
+<p></p>
+
+<p><font face="arial, helvetica" size="6"><a name="message_table"></a>
+<b>Table of csound~ Messages:</b></font>
+</p>
+
+<p>
+<table style="width: 100%; height: 1686px;" border="1" rules="all" frame="box" cellpadding="4">
+
+  <colgroup><col width="100"><col width="550"></colgroup>
+  <thead><tr>
+    <td style="text-align: center; background-color: rgb(255, 255, 153);">
+    <font face="arial, helvetica" size="4"><b>Message</b></font>
+    </td>
+
+    <td style="text-align: center; background-color: rgb(255, 255, 153);">
+    <font face="arial, helvetica" size="4"><b>Description</b></font></td>
+
+  </tr>
+
+  </thead><tbody>
+	<tr>
+	  <td style="text-align: center; width: 20%; background-color: rgb(220, 248, 225);">
+		<font face="arial, helvetica" size="4"><i>bypass</i></font>
+	  </td>
+
+      <td>
+		<font face="tahoma" size="2"><a name="message_control"></a>
+		Enable/disable audio bypass. A non-zero argument enables and zero disables.
+		<p>
+		When bypass mode is enabled, audio arriving at [csound~]'s inlets
+		will be copied to their respective outlets.  If there is an active
+		Csound performance, it will not be performed while in bypass mode,
+		thus saving CPU cycles.
+		</font>
+      </td>
+	</tr>
+    <tr>
+
+	  <td style="text-align: center; width: 20%; background-color: rgb(220, 248, 225);">
+		<font face="arial, helvetica" size="4"><i>control<br />c</i></font>
+	  </td>
+
+      <td>
+		<font face="tahoma" size="2"><a name="message_control"></a>
+		Sends k-rate values to Csound using invalue and chnget processing. Here are some examples: </font>
+		<p><font face="courier" size="2">
+
+		&nbsp;&nbsp;&nbsp;&nbsp;control gain .1<br /><br />
+
+		&nbsp;&nbsp;&nbsp;&nbsp;c filterQ .8<br /><br />
+
+		&nbsp;&nbsp;&nbsp;&nbsp;c atk 1.4</font></p>
+
+		<p><font face="tahoma" size="2">To access this value in your orc/csd, use the invalue or chnget opcode like this: </font></p>
+
+		<p><font face="courier" size="2">
+		&nbsp;&nbsp;&nbsp;kgain invalue "gain"<br /><br />
+
+		&nbsp;&nbsp;&nbsp;kQ chnget "filterQ"<br /><br />
+
+		&nbsp;&nbsp;&nbsp;iatk chnget "atk"</font></p>
+
+		<p><font face="tahoma" size="2">Invalue processing (see <a href="#message_input">"input</a>" message
+		description) must be enabled in order for "control"
+		messages to send values to their respective invalue or chnget opcodes.</font></p>
+
+		<p><font face="tahoma" size="2">Use of chnget is preferred
+		over invalue. chnget is a little faster than invalue and it runs at
+		i-rate as well as k-rate (invalue only runs at k-rate).</font></p>
+		<p></p>
+      </td>
+	  
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> <font face="arial, helvetica" size="4"><i>csound</i></font></td>
+
+      <td> <font face="tahoma" size="2"><a name="message_csound"></a>
+		Loads the command line that will be passed to Csound when the <a href="#message_start">"start"</a>
+		or <a href="#message_start">"bang"</a> message is received. </font>
+      <p><font face="tahoma" size="3">&nbsp;&nbsp;&nbsp;csound hello.csd </font></p>
+
+      <p><font face="tahoma" size="2">
+		In this example, hello.csd should be in the
+		same directory as the patch. By default, whenever a patch is opened, csound~ will save the
+		path to the directory that contains it. This directory will be the
+		current directory. When "start" is received, Csound will look for
+		hello.csd relative to the current directory. </font></p>
+
+      <p><font face="tahoma" size="2">
+		You can change the current directory for a given instance of csound~ using the "path" message.
+		Each instance of csound~ keeps track of its own current directory. </font></p>
+
+      <p><font face="tahoma" size="2">
+		Here's a MacOSX example. Let's say your patch is located at /Users/george/patches/ and your csd
+		file is located at /Users/george/patches/csd_files/. In this case, your
+		"csound" message should look like: </font></p>
+
+      <p><font face="tahoma" size="3">&nbsp;&nbsp;&nbsp;csound csd_files/hello.csd </font></p>
+
+      <p><font face="tahoma" size="2"> You can add Csound flags to the message. &nbsp;For example:</font></p>
+
+      <p><span style="font-family: tahoma;">&nbsp;&nbsp;&nbsp;
+      </span><font face="tahoma" size="3">csound -m0 hello.csd </font></p>
+
+      <p><font face="tahoma" size="2">will disable Csound message output to the Max window. &nbsp;</font></p>
+
+      <p><font face="tahoma" size="2">Never use these flags:<span style="font-weight: bold;"> -+rtmidi, -M, -L, -B, -b</span><br />
+
+      </font></p>
+
+      <p><font face="tahoma" size="2"><font face="tahoma" size="2">When using csound~ in realtime
+(i.e. not rendering to an
+audio file), don't use these flags:<span style="font-weight: bold;">
+-o, </span><span style="font-weight: bold;">-i</span></font></font><font face="tahoma" size="2"><font face="tahoma" size="2"><br />
+
+      <p>To enable non-realtime rendering, add&nbsp;<span style="font-weight: bold;">-o SomeFileName.aif</span>
+to the "csound" message. In non-realtime
+mode, rendering is done in a seperate thread. This means that
+audio will not be output from csound~'s outlets. Rendering
+will be done regardless of whether DSP is
+active or not. MIDI data, <font face="tahoma" size="2"><a href="#message_control">"control"</a></font>
+messages, and <font face="tahoma" size="2"><a href="#message_event">"event"</a></font>
+messages will be ignored by csound~.  To render with a MIDI
+file, use the <span style="font-weight: bold;">-F</span>
+flag (and <span style="font-weight: bold;">-T</span>
+if appropriate).</p>
+
+      <p>If csound~ has a recorded sequence loaded when
+non-realtime rendering begins, that sequence will playback from the
+beginning and will "keep time" with the rendering process.
+This will allow users to render recorded sequences in
+non-realtime mode. This is useful if the user wants to
+produce a higher quality rendering with, for example: higher samplerate
+and/or krate, increased polyphony, better (but more cpu hungry)
+filters,
+etc... .</p>
+
+      </font></font></p>
+
+      <p><font face="tahoma" size="2"><font face="tahoma" size="2">
+      <p> If neither -d or -g is present in the "csound"
+message, then csound~ will add -g so that ASCII representations of
+f-tables will appear in the Max window. </p>
+
+      </font></font></p>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> <font face="arial, helvetica" size="4"><i>event<br />e</i></font></td>
+
+      <td> <font face="tahoma" size="2"> </font>
+      <font face="tahoma" size="2"><a name="message_event"></a>
+		Pass score line events to Csound during a realtime performance. Here
+		are some examples: </font>
+      <p> <font face="tahoma" size="3">
+		&nbsp;&nbsp;&nbsp;
+		event i3 0 3.33 440 </font> </p>
+
+      <p> <font face="tahoma" size="2">
+		Creates a new instance of instr 3 to be played immediately for 3.33
+		seconds with a 4'th argument set to 440. </font></p>
+
+      <p> <font face="tahoma" size="3">
+		&nbsp;&nbsp;&nbsp;
+		e f74 1 0 8192 10 1 </font></p>
+
+      <p><font face="tahoma" size="2"> <font face="tahoma" size="2"> Loads a sine wave into table # 74. </font></font></p>
+
+      <p><font face="tahoma" size="3">&nbsp;&nbsp;&nbsp; e a 0 0 60 </font>
+      </p>
+
+      <p> <font face="tahoma" size="2"> Advances the score time by 60 seconds. </font></p>
+
+      <p> <font face="tahoma" size="3">
+		&nbsp;&nbsp;&nbsp;
+		e i3 0 3.33 220, e i3 0 3.33 440, e i3 0 3.33 880 </font> </p>
+
+      <font face="tahoma" size="2"> A comma delimited list of events packed into one message.</font>
+	  <br /><br />
+      </td>
+
+    </tr>
+
+    <tr>
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> 
+	  	<font face="arial, helvetica" size="4"><a name="message_input"></a><i>input</i></font>
+	  </td>
+      <td>
+	  	<font face="tahoma" size="2">Enable/disable <b>invalue</b> and <b>chnget</b> processing (enabled by default). 
+		A non-zero argument enables and zero disables.</font>
+	  </td>
+    </tr>
+	<tr>
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> 
+	 	 <font face="arial, helvetica" size="4"><a name="message_interval"></a><i>interval</i></font>
+	  </td>
+      <td>
+	  	<font face="tahoma" size="2">
+			Sets the millisecond interval that determines the rate of message output from [csound~]'s 
+			message outlet (default = 1ms).  Overdrive mode overrides this setting.
+		</font>
+	  </td>
+    </tr>
+
+	<tr>
+	  <td style="text-align: center; background-color: rgb(220, 248, 225);"> <font face="arial, helvetica" size="4"><a name="message_loadsamp"></a><i>loadsamp</i></font></td>
+
+      <td>
+		<font face="tahoma" size="2">
+		Load an audio file into a table.  Three arguments: table #, channel, filename, offset time (optional), size time (optional)
+		<p>
+		<b>arg #1</b>: If the table argument references a non-existent table, it will be created.
+		If the table argument is positive and the table exists, then it won't be replaced.  This is useful when you want to
+		replace table data on the fly without causing a crash.  If the table is too small for the requested file, then samples
+		will be read until full. 
+		If the table argument is negative and the table exists but is too small for the file you want to load, then
+		it will be replaced.  Replacing tables during a performance is NOT SAFE!  See the <a href="#tips">"Tips"</a> section above for some crash-free solutions.
+		</p>
+		<p>
+		<b>arg #2</b>: The channel argument determines which channel of audio data you want to read in.  For stereo files, 1 is left, 2 is right.
+		To read in all channels as interleaved data, use 0.
+		</p>
+		<p>
+		<b>arg #3</b>: The filename argument.  On Windows, use Windows style path with forward (/) slashes.
+		On MacOSX, use either Max style paths or POSIX style paths.
+		If it's a relative path, it will be relative
+		to the directory containing the patch.
+		</p>
+		<p>
+		<b>arg #4</b> (optional, default = 0): Read offset time in seconds. If negative, time is in sample frames. 
+		</p>
+		<p>
+		<b>arg #5</b> (optional, default = 0): Amount of time to read in seconds. 0 means read in all data or as much data a possible. If negative, time is in sample frames. 
+		</p>
+		<p>
+		Examples:</font><br /><br />
+		<font face="courier" size="2">
+		&nbsp;&nbsp;&nbsp; loadsamp 1 2 "/Users/Georg/samples/fun.aif"
+		</p>
+		</font>
+		<font face="tahoma" size="2">
+		If table # 1 exists, then read in channel 2 of fun.aif until the table is full (the table is not replaced).
+		If table # 1 does not exist, then create it and read in all channel 2 data.</font>
+
+		<br /><br />
+
+		<font face="courier" size="2">
+		&nbsp;&nbsp;&nbsp; loadsamp -3 0 "/Users/Georg/samples/fun.aif"
+		</p>
+		</font>
+		<p>
+		<font face="tahoma" size="2">
+		If table # 3 does not exist or it's too small, create/replace it.  Then read in all channels of fun.aif as interleaved data.<br />
+		</p>
+		<p>
+		Note:  When using loadsamp, some of the table opcodes will not operate as expected.    Some of the affected opcodes:
+		<br /><br />
+		&nbsp;&nbsp;&nbsp;<b>nsamp</b>, <b>ftchnls</b>, <b>ftlptim</b>, <b>ftsr</b>
+		<br /><br />
+		To minimize frustration, always load
+		a similar type of sample to the one you're replacing.  In other words, if a table contains a single channel of data at 44100 sr, then
+		only load samples with similar characteristics in that table.
+		<br />
+		</p>
+		</font>
+	  </td>
+	</tr>
+	
+    <tr>
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> <font face="arial, helvetica" size="4"><i>message<br />printout</i></font></td>
+      <td> <font face="tahoma" size="2"> </font>
+      <font face="tahoma" size="2">
+		Enable/disable Csound message posting to the Max window (enabled by
+		default). A non-zero argument enables and zero disables. </font>
+      <p><font face="tahoma" size="2">
+		An alternative to disabling message posting is to add the "-m0" flag to
+		the <a href="#message_csound">"csound"</a> message.
+		You will still see the results of Csound initialization and compilation, but Csound events won't be posted. </font></p>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> <font face="arial, helvetica" size="4"><i>midi<br />m</i></font></td>
+      <td> <font face="tahoma" size="2"> </font>
+      <font face="tahoma" size="2"><a name="message_midi"></a>
+		Send a complete MIDI message to Csound. For example, to send a note-on
+		to Csound do something like: </font>
+      <p> <font face="tahoma" size="3">
+		&nbsp;&nbsp;&nbsp;midi 144 64 127 </font> </p>
+
+      <p> <font face="tahoma" size="2">
+		An alternative to the "midi" message is to send a MIDI byte stream to the
+		first inlet of csound~ . Do not connect more than one MIDI byte
+		stream to csound~. If you're working with multiple byte streams, use
+		the Max objects midiparse and midiformat to merge them. </font> </p>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> <font face="arial, helvetica" size="4"><i>output</i></font> </td>
+      <td> <font face="tahoma" size="2"><a name="message_output">
+		Enable/disable <b>outvalue</b> and <b>chnset</b> processing (enabled by default). A non-zero
+		argument enables and zero disables.
+		<p>
+		When enabled, messages generated by <b>outvalue</b> and <b>chnset</b> will be sent out the fourth from right outlet.
+		</p>
+		<p>
+		If a message is identical to a previous message, there will be no output. For example, if Csound outputs the message
+		"frequency 224.89" multiple times, only the
+		first time produces output from csound~. Only when the value
+		changes (e.g. "frequency 440.01") will a message starting with
+		"frequency" be output again.
+		</p>
+		<p>
+		When using <b>chnset</b>, remember to declare the output channels in your orchestra header
+		with the <b>chn_k</b> opcode. For example:
+		</font>
+		</p>
+		<p>
+		<font face="courier" size="2">
+		&nbsp;&nbsp;&nbsp;chn_k "frq", 2
+		<p>
+		&nbsp;&nbsp;&nbsp;instr 1<br />
+		&nbsp;&nbsp;&nbsp;...<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chnset kFrq, "frq"<br /> 
+		&nbsp;&nbsp;&nbsp;endin<br /><br />
+		</font>
+	  </td>
+    </tr>
+	<tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> 
+		<font face="arial, helvetica" size="4"><i>open</i></font> </td>
+
+      <td> <font face="tahoma" size="2">
+		Opens the current .csd/.orc/.sco files in the default editor for those types of
+		files.  
+		<p>
+		In order for this to work, you must first associate .csd/.orc/.sco files with
+		your favorite text editor.
+		</p>
+		</font></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);">
+		<font face="arial, helvetica" size="4"><i>overdrive</i></font></td>
+
+      <td><font face="tahoma" size="2"><a name="message_overdrive"></a>
+		Enable/disable <b>outvalue</b> and <b>chnset</b> processing in overdrive mode. &nbsp;A non-zero argument
+		enables overdrive mode and zero disables it. <br />
+      <br />
+		When overdrive is disabled, messages generated by <b>outvalue</b> and <b>chnset</b> are output at
+		1ms intervals. Use this mode when you're debugging. If you need better timing accuracy, enable
+		overdrive with the message "overdrive 1". When overdrive is
+		enabled, messages are output as soon as possible. <br />
+      <br />
+
+		 </font></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> 
+		<font face="arial, helvetica" size="4"><i>path</i></font> </td>
+
+      <td> <font face="tahoma" size="2">
+		Set the current directory for this instance of csound~. "path" accepts an absolute pathname argument.  On MacOSX, you can
+		use either Max style paths or POSIX style paths.  On Windows, use Max style paths with forward slashes.</font></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"><font face="arial, helvetica" size="4"><i>playstart</i></font></td>
+
+      <td><font face="tahoma" size="2"><a name="message_playstart"></a>
+		This message will start playback of recorded&nbsp;</font><font face="tahoma" size="2">MIDI data,&nbsp;</font><font face="tahoma" size="2"><a href="#message_control">"control"</a></font><font face="tahoma" size="2"> messages,
+		and&nbsp;</font><font face="tahoma" size="2"><a href="#message_event">"event"</a></font><font face="tahoma" size="2"> messages.</font></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"><font face="arial, helvetica" size="4"><i>playstop</i></font></td>
+
+      <td><font face="tahoma" size="2"><a name="message_playstop"></a>
+		This message will stop playback of recorded&nbsp;</font><font face="tahoma" size="2">MIDI data,&nbsp;</font><font face="tahoma" size="2"><a href="#message_control">"control"</a></font><font face="tahoma" size="2"> messages,
+		and&nbsp;</font><font face="tahoma" size="2"><a href="#message_event">"event"</a></font><font face="tahoma" size="2"> messages.</font></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"><font face="arial, helvetica" size="4"><i>read</i></font></td>
+
+      <td><font face="tahoma" size="2"><a name="message_read"></a>
+		This message is used to load a csound~ recorded sequence. &nbsp;It has
+		one argument: the pathname of a&nbsp;file. &nbsp;There is no
+		requirement for the file extension. </font></td>
+
+    </tr>
+
+	<tr>
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"><font face="arial, helvetica" size="4"><i>readbuf</i></font></td>
+      <td><font face="tahoma" size="2"><a name="message_read"></a>
+		The "readbuf" message will copy audio data from a [buffer~] to a Csound table.
+		<p>
+		<b>arg #1</b>: Csound table number to write to. A negative number forces the table to be replaced with
+		a table whose size equals the amount of data requested in arg #5.  A positive number will not replace
+		an exisiting table, but will create one if it doesn't exist.
+		</p>
+		<p>
+		<b>arg #2</b>: Channel to read. 0 means read all channels. If > 0, then read from that channel into the Csound
+		table (treating the table as a single channel table).
+		</p>
+		<p>
+		<b>arg #3</b>: The name of the [buffer~] to read from.
+		</p>
+		<p>
+		<b>arg #4</b> (optional, default = 0): Read offset time (from beginning of buffer~).  If positive, specifies time in seconds.  If negative,
+		specifies time in sample frames.
+		</p>
+		<p>
+		<b>arg #5</b> (optional, default = 0): Amount of audio data to read. 0 means read in all data or as much data as possible.
+		If positive, specifies time in seconds.  If negative, specifies time in sample frames.
+		</p>
+		</font>
+		</td>
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"><font face="arial, helvetica" size="4"><i>recordstart</i></font></td>
+
+      <td><font face="tahoma" size="2"><a name="message_recordstart"></a>
+		This message will start the recording of MIDI data,&nbsp;</font><font face="tahoma" size="2"><a href="#message_control">"control"</a></font><font face="tahoma" size="2"> messages, and&nbsp;</font><font face="tahoma" size="2"><a href="#message_event">"event"</a></font><font face="tahoma" size="2"> messages.
+		&nbsp;Previously recorded data will be delete before recording starts.<br />
+
+      <br />
+
+		When "recordstart" is received by csound~, it will automatically
+		generate MIDI control events and&nbsp;</font><font face="tahoma" size="2"><a href="#message_control">"control"</a></font><font face="tahoma" size="2"> messages to reflect the last
+		known state of all such data. &nbsp;This will allow the user to
+		start recording without having to send initializing MIDI and "control"
+		data afterwards. &nbsp;<br />
+
+      </font></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"><font face="arial, helvetica" size="4"><i>recordstop</i></font></td>
+
+      <td><font face="tahoma" size="2"><a name="message_recordstop"></a>
+		This message will stop the recording of&nbsp;</font><font face="tahoma" size="2">MIDI data,&nbsp;</font><font face="tahoma" size="2"><a href="#message_control">"control"</a></font><font face="tahoma" size="2"> messages,
+		and&nbsp;</font><font face="tahoma" size="2"><a href="#message_event">"event"</a></font><font face="tahoma" size="2"> messages. &nbsp;To
+		playback the recorded data, send the message "playstart".<br />
+
+      <br />
+
+		If there are any hanging MIDI notes when recording stops, MIDI
+		NoteOff's will be added to cancel them.<br />
+
+      <br />
+
+		Events are moved in time within the recorded sequence so that the
+		"empty space" at the beginning of the recording is removed.
+		This will allow playback of recorded events to start
+		immediately upon receiving the "playstart" message.<br />
+
+      </font></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> <font face="arial, helvetica" size="4"><i>reset</i></font></td>
+
+      <td> <font face="tahoma" size="2">
+		Stop the current performance (if it's still running), recompile the
+		orc/csd, then restart the performance.<br />
+
+      </font></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> <font face="arial, helvetica" size="4"><i>rewind</i></font></td>
+
+      <td> <font face="tahoma" size="2"> Set
+the score offset to 0 seconds. Score playback will resume from that
+time.<br />
+
+      </font></td>
+
+    </tr>
+
+	<tr>
+	  <td style="text-align: center; background-color: rgb(220, 248, 225);"> <font face="arial, helvetica" size="4">
+		<i>rsidx</i></font></td>
+
+      <td>
+		<font face="tahoma" size="2">
+		Read the table value at a specified index.  Two integer arguments: table number, index.
+		<p>
+		Example:</font><br /><br />
+		<font face="courier" size="2">
+		&nbsp;&nbsp;&nbsp; rsidx 3 128
+		</p>
+		</font>
+		<font face="tahoma" size="2">
+		If table # 3 exists and the value at index 128 is 0.42481, then this message will be sent out the fourth from right outlet:</font><br /><br />
+		<font face="courier" size="2">
+		&nbsp;&nbsp;&nbsp; rsidx 0.42481
+	  </td>
+	</tr>
+
+	<tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);">
+		<font face="arial, helvetica" size="4"><i>run</i></font></td>
+
+      <td><font face="tahoma" size="2"><a name="message_recordstart"></a>
+		Execute a command line command.
+	  <p>
+		If the command you want to run is not in your PATH variable, you must
+		specify the absolute path to the command.  
+	  </p>
+	  <p>
+		File arguments may be relative or absolute paths.  Relative paths are 
+		relative to the folder that contains the patch that contains [csound~]. 
+	  </p>
+	  <p>
+	  	When using paths with spaces in them, enclose the path in double-quotes.
+	  </p>
+	  <p>
+		In Mac OSX, many apps are actually folders.  In order to use these
+        apps with the run command, you must specify the path to the actual
+		binary executable which is often in Contents/MacOS/.
+	  </p>
+	  <p>
+		In Mac OSX, you can use either Max style or POSIX style paths.
+	  </p>
+	  <p>
+		In Windows, use forward slashes (/) instead of back slashes (\).
+	  </p>
+      </font>
+	  </td>
+
+    </tr>
+
+    <tr>
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> <font face="arial, helvetica" size="4"><i>sfdir</i></font></td>
+
+      <td> <font face="tahoma" size="2">
+		Set the Csound variables SFDIR, SSDIR, and SADIR. Accepts one argument: an
+		absolute pathname to a directory. It has been provided for compatiblity
+		with Ingalls' csound~ patches.</font></td>
+
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> <font face="arial, helvetica" size="4"><i>start<br />bang</i></font></td>
+
+      <td> <font face="tahoma" size="2"> </font>
+      <font face="tahoma" size="2"><a name="message_start"></a>
+		Compile the csd/orc file specified in the "csound" message (which
+		should have been received before "start"). If the compilation is
+		successful, then performance will start once DSP processing is started.
+		If DSP processing is already active, then the csound performance will
+		start immediately.
+		<p>
+		When rendering to a file, DSP processing need not be active.
+		</p>
+		<p>
+		New in v1.0.4:<br />
+		Upon successfull compilation, if DSP is not active, then one k-cycle will be automatically processed.
+		This will force all initializations (including events with a start time of zero) to take place.
+		For example, all tables that were scheduled to be loaded at time zero will be loaded. During this
+		initial k-cycle, audio input will be filled with zeros, and audio output will be ignored.
+		</p>
+	  </font>
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"> <font face="arial, helvetica" size="4"><i>stop</i></font></td>
+
+      <td> <font face="tahoma" size="2"> </font>
+      <font face="tahoma" size="2">
+		Stop the csound performance and send a bang out the rightmost outlet.</font></td>
+
+    </tr>
+
+	<tr>
+	  <td style="text-align: center; width: 20%; background-color: rgb(220, 248, 225);">
+		<font face="arial, helvetica" size="4"><i>tempo</i></font>
+	  </td>
+
+      <td>
+		<font face="tahoma" size="2"><a name="message_control"></a>
+		Set the relative playback speed of recorded events.  Accepts one
+		float argument.  
+		<p>
+		"tempo 1.0" means playback at original speed.  "tempo" messages are not recorded.
+		</font>
+      </td>
+	</tr>
+	
+    <tr>
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"><font face="arial, helvetica" size="4"><i>write</i></font></td>
+
+      <td><font face="tahoma" size="2"><a name="message_write"></a>
+		This message will save a recorded sequence to a binary file. It
+		has one argument: the pathname of a file to save to. There is
+		no requirement for the file extension.</font></td>
+    </tr>
+
+	<tr>
+      <td style="text-align: center; background-color: rgb(220, 248, 225);"><font face="arial, helvetica" size="4"><i>writebuf</i></font></td>
+      <td><font face="tahoma" size="2"><a name="message_read"></a>
+		The "writebuf" message will copy audio data from a Csound table to a [buffer~].
+		<p>
+		<b>arg #1</b>: Csound table number to read from.
+		</p>
+		<p>
+		<b>arg #2</b>: Target [buffer~] channel. If = 0, copy all channels (with the assumption that the Csound table has the same number of channels as [buffer~]).
+		If > 0, treat the Csound table as a single-channel table.
+		</p>
+		<p>
+		<b>arg #3</b>: arg #3: The name of the target [buffer~].
+		</p>
+		<p>
+		<b>arg #4</b> (optional, default = 0): Read offset time in seconds. If negative, time is in sample frames.
+		</p>
+		<p>
+		<b>arg #5</b> (optional, default = 0): Amount of time to read in seconds. 0 means read in all data or as much data a possible. If negative, time is in sample frames.
+		</p>
+		 </font></td>
+    </tr>
+	
+	<tr>
+	  <td style="text-align: center; background-color: rgb(220, 248, 225);"> <font face="arial, helvetica" size="4"><i>wsidx</i></font></td>
+
+      <td>
+		<font face="tahoma" size="2">
+		Set the value at a specific index in a given table.  Three arguments: table # (integer), index (integer), value (float)
+		<p>
+		Example:</font><br /><br />
+		<font face="courier" size="2">
+		&nbsp;&nbsp;&nbsp; wsidx 5 17 .2515
+		</p>
+		</font>
+		<font face="tahoma" size="2">
+		If table # 5 exists and index 17 is within bounds, then the value at that index will be set to .2515.</font><br />
+	  </td>
+	</tr>
+
+  </tbody>
+</table>
+
+</body>
+</html>

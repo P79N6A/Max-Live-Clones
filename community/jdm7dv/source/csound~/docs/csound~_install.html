@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+  <title>csound~ Installation</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" link="#222288" alink="#444488" vlink="#444488">
+
+<font face="tahoma" size="2">
+<a href="csound%7E.html">csound~</a> | <a href="csound%7E_manual.html">Manual</a> | <a href="csound%7E_troubleshoot.html">Troubleshooting</a>
+</font>
+<p><font color="#202d3d" face="arial, helvetica" size="5"><b><i>Installing csound~</i></b></font>
+</p>
+
+<p>
+<font face="tahoma" size="2">
+These are the instructions for installing <b>csound~ v1.0.7</b>. <br>
+Instructions for earlier versions are contained within their respective archive files.</font></p>
+
+<p><font face="tahoma" size="3">
+<a href="#Csound5"> Installing Csound5 (<span style="color: rgb(255, 0, 0);">required</span>)</a></font></p>
+
+<p><font face="tahoma" size="3"><a href="#MacOSX">Mac OSX&nbsp;Instructions</a></font></p>
+<p><font face="tahoma" size="3"><a href="#WinXP">Windows XP/Vista Instructions</a></font></p>
+
+<p></p>
+
+<hr>
+<p><font face="times" size="4"><b><a name="Csound5">Installing Csound5</a></b></font></p>
+
+<font color="red" face="tahoma" size="2"> <b>csound~ depends on Csound5. </b></font>
+
+<br>
+<font color="black" face="tahoma" size="2">
+<br>
+
+You can download Csound5 from:
+<br>
+<br>
+&nbsp; &nbsp;&nbsp; <a href="http://sourceforge.net/projects/csound">http://sourceforge.net/projects/csound</a><br>
+<br>
+Consult this table to see which Csound5 version to install:
+<br><br>
+</font>
+
+<table style="width: 800px; height: 132px;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td width="20" style="text-align: center"><font color="black" face="tahoma" size="2"><b>MacOSX:</b></font></td>
+      <td width="80" style="text-align: center"><font color="black" face="tahoma" size="2"><b>WindowsXP:</b></font></td>
+    </tr>
+    <tr>
+      <td><font color="black" face="tahoma" size="2">
+		
+		(intel) 5.10 and later<br>
+		(ppc  ) 5.10 and later
+		
+		</font></td>
+
+      <td>
+		
+		<font color="black" face="tahoma" size="2">5.10.1 and later</font><br>
+		
+	  </td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+
+<span style="font-family: Tahoma; font-weight: bold;"><a name="MacOSX"></a>Mac OS X (intel/ppc)</span>
+<table style="text-align: left; background-color: rgb(225, 233, 253); width: 816px; height: 182px;" border="1" cellpadding="4" cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; background-color: rgb(225, 233, 253);"><font face="tahoma" size="2"><b>1</b></font></td>
+      <td style="vertical-align: top; background-color: rgb(225, 234, 253);">
+		<font face="tahoma" size="2"><a href="http://sourceforge.net/projects/csound">Download</a>
+		and install Csound5. </font>
+	  </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; background-color: rgb(225, 233, 253);"><font face="tahoma" size="2"><b>2</b></font></td>
+      <td style="vertical-align: top; background-color: rgb(225, 233, 253);">
+		<font face="tahoma" size="2"><a href="http://www.davixology.com/csound~.html">Download</a>
+		and expand the csound~ zip file. </font>
+	  </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; background-color: rgb(225, 233, 253);"><font face="tahoma" size="2"><b>3</b></font></td>
+      <td style="vertical-align: top; background-color: rgb(225, 233, 253);">
+		<font face="tahoma" size="2">
+		Navigate to "binaries/MacOSX/" folder. 
+		
+		<p>For MaxMSP 4.5.x on ppc, copy <b>csound~_ppc_float_MaxMSP45.mxo</b> to "/Library/Application Support/Cycling '74/externals/".</p>
+		<p>For MaxMSP 4.6.x on ppc, copy <b>csound~_ppc_float.mxo</b> to "/Applications/MaxMSP 4.6/Cycling'74/externals/".</p>
+		<p>For MaxMSP 4.6.x on intel, copy <b>csound~_intel_xxxx.mxo</b> to "/Applications/MaxMSP 4.6/Cycling'74/externals/".</p>
+		<p>For MaxMSP 5.x.x on ppc, copy <b>csound~_ppc_xxxx.mxo</b> to "/Applications/Max5/Cycling '74/msp-externals".</p>
+		<p>For MaxMSP 5.x.x on intel, copy <b>csound~_intel_xxxx.mxo</b> to "/Applications/Max5/Cycling '74/msp-externals".</p>
+		<p>
+		'xxxx' = 'float' or 'double' (Use the one that matches your Csound 5 version.)
+		</p>
+		<p>
+	    Rename the file <b>csound~.mxo</b>.
+		</p>
+		</font>
+	  </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><font face="tahoma" size="2"><b>4</b></font></td>
+	  <td>
+		<font face="tahoma" size="2">
+		Navigate to "help_files/" folder.
+		<p>
+		Copy all <b>.csd</b> files, <b>csound~.help</b> to the help folder. &nbsp;
+		</p>
+		<p>For MaxMSP 4.5, that folder is: /Applications/MaxMSP 4.5/max-help/</p>
+
+		<p>For MaxMSP 4.6, the help folder is: /Applications/MaxMSP 4.6/max-help/</p>
+
+		<p>For MaxMSP 5.0 (and later), the help folder is: /Applications/Max5/Cycling '74/msp-help/</p>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><font face="tahoma" size="2">
+		If you have previously installed csound~.mxo, make sure that only one
+		copy of csound~.mxo exists in Max's search path. Otherwise, you may
+		accidently load an older version.
+		<br>
+		<br>
+		If you have prevously installed Matt Ingalls' csound~, be sure to
+		remove it from the externals folder.
+		<br>
+		<br>
+		To check your installation, open the patch "csound~.help". In the Max
+		window, you should see the csound~ version. It will look something
+		like this:
+		<br>
+		<br>
+		<i>&nbsp; &nbsp; &nbsp;csound~ v1.0.7</i> <br>
+		<br>
+		If you don't see it, then you have not installed csound~.mxo properly,
+		or Matt Ingalls' csound~ is being loaded instead of csound~.mxo.<br>
+		<br>
+		<span style="color: rgb(153, 0, 0);">
+		Never put csound~.mxo in the same directory as your&nbsp;MaxMSP patch.</span></font>
+	  </td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<br>
+<span style="font-family: Tahoma; font-weight: bold;"><a name="WinXP"></a>WindowsXP/Vista<br></span>
+
+<table style="text-align: left; background-color: rgb(225, 233, 253); width: 816px; height: 182px;" border="1" cellpadding="4" cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; background-color: rgb(225, 233, 253);"><font face="tahoma" size="2"><b>1</b></font></td>
+      <td style="vertical-align: top; background-color: rgb(225, 234, 253);">
+		<font face="tahoma" size="2"><a href="http://sourceforge.net/projects/csound">Download</a> and install Csound5. </font></td>
+	</tr>
+    <tr>
+      <td style="vertical-align: top; background-color: rgb(225, 233, 253);"><font face="tahoma" size="2"><b>2</b></font></td>
+      <td style="vertical-align: top; background-color: rgb(225, 233, 253);"><font face="tahoma" size="2"><a href="http://www.davixology.com/csound~.html">Download</a>
+		and expand the csound~ zip file. </font>
+	  </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><font face="tahoma" size="2"><b>3</b></font></td>
+      <td><font face="tahoma" size="2">
+		Navigate to the "binaries\WinXP\" sub-directory.
+		</font>
+		<p></p>
+      <table style="text-align: left; width: 779px; height: 148px;" border="0" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top;"><font face="tahoma" size="2"><b>a)</b></font></td>
+            <td style="vertical-align: top;"><font face="tahoma" size="2">
+			  If your Csound5 version number ends in "f", choose <b>csound~_float.mxe</b>. <br>
+			  If your Csound5 version number ends in "d", choose <b>csound~_double.mxe</b>. <br><br>
+			  Copy <b>csound~_xxxxxx.mxe</b> to your MaxMSP externals folder.
+
+			  <p>For MaxMSP 4.5, that folder is: C:\Program Files\Common Files\Cycling '74\externals\</p>
+			  <p>For MaxMSP 4.6, the externals folder is: C:\Program Files\Cycling '74\MaxMSP 4.6\Cycling '74\externals\</p>
+			  <p>For MaxMSP 5.0 (and later), the externals folder is: C:\Program Files\Cycling '74\Max 5.0\Cycling '74\msp-externals\</p>
+			  
+			  </font>
+			</td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><font face="tahoma" size="2"><b>b)</b></font></td>
+            <td style="vertical-align: top;"><font face="tahoma" size="2">Rename the file <b>csound~.mxe</b>.</font></td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><font face="tahoma" size="2"><b>4</b></font></td>
+      <td><font face="tahoma" size="2">
+		Copy all <b>.csd</b> files and <b>csound~.help</b> to the help folder.
+		<p>For MaxMSP 4.5, that folder is: C:\Program Files\Cycling '74\MaxMSP 4.5\max-help\</p>
+		<p>For MaxMSP 4.6, the help folder is: C:\Program Files\Cycling '74\MaxMSP 4.6\max-help\</p>
+		<p>For MaxMSP 5.0 (and later), the help folder is: C:\Program Files\Cycling '74\Max 5.0\Cycling '74\msp-help\</p>
+    </tr>
+    <tr>
+      <td></td>
+      <td><font face="tahoma" size="2">
+		If you have previously installed csound~.mxe, make sure that only one copy of csound~.mxe
+		exists in Max's search path. Otherwise, you may accidently load an older version.<br>
+      <br>
+		To check your installation, open the patch csound~.help. In the Max
+		window, you should see the csound~ version. It should look something
+		like this: <br>
+      <br>
+      <i>&nbsp; &nbsp; &nbsp;csound~ v1.0.7</i> <br>
+      <br>
+		If you don't see it, then you have not installed csound~.mxe properly.<br>
+      <br>
+      <span style="color: rgb(153, 0, 0);">
+		Never put csound~.mxe in the same directory as your&nbsp;MaxMSP patch.</span></font></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<font face="tahoma" size="2"><br>
+
+All software and music by Davis Pyon (dmpyon AT yahoo DOTKOM). </font>
+</body>
+</html>

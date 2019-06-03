@@ -1,0 +1,25 @@
+﻿  ambipan~.c
+d:\max\max-objects\source\ambipan~\ambipan~.c(204): warning C4244: '=': conversion from 't_double' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(205): warning C4244: '=': conversion from 't_double' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(300): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(304): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(331): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(336): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(340): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(389): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(393): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(430): warning C4244: '=': conversion from 't_atom_float' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(436): warning C4244: '=': conversion from 't_atom_float' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(463): warning C4244: '=': conversion from 't_atom_float' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(499): warning C4244: '=': conversion from 't_atom_float' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(511): warning C4244: '=': conversion from 't_atom_float' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(549): warning C4244: '=': conversion from 't_atom_float' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(561): warning C4244: '=': conversion from 't_atom_float' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(663): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(786): warning C4244: '=': conversion from 't_atom_long' to 'int', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(824): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(837): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(844): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\max\max-objects\source\ambipan~\ambipan~.c(857): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+     Creating library ..\..\sysbuild\intermediate\Debug_x64\ambipan~\ambipan~.lib and object ..\..\sysbuild\intermediate\Debug_x64\ambipan~\ambipan~.exp
+  ambipan~.vcxproj -> D:\Max\Max-Objects\source\ambipan~\x64\Debug\ambipan~.mxe64

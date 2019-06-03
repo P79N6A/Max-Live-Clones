@@ -1,0 +1,44 @@
+﻿  dllmain_win.c
+  channel.c
+e:\my github\aug\max-objects\source\csound~\src\pthread.h(320): error C2011: 'timespec': 'struct' type redefinition
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\time.h(38): note: see declaration of 'timespec'
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1925): warning C4005: 'snprintf': macro redefinition
+  e:\my github\aug\max-objects\source\csound~\src\commondefs.h(46): note: see previous definition of 'snprintf'
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1927): fatal error C1189: #error:  Macro definition of snprintf conflicts with Standard Library function declaration
+  CsoundTable.c
+e:\my github\aug\max-objects\source\csound~\src\commondefs.h(40): error C2632: 'int' followed by 'int' is illegal
+e:\my github\aug\max-objects\source\csound~\src\commondefs.h(40): warning C4091: 'typedef ': ignored on left of 'int' when no variable is declared
+e:\my github\aug\max-objects\source\csound~\src\pthread.h(320): error C2011: 'timespec': 'struct' type redefinition
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\time.h(38): note: see declaration of 'timespec'
+e:\my github\aug\max-objects\source\csound~\src\csound.h(24): fatal error C1014: too many include files: depth = 1024
+  csound~.c
+e:\my github\aug\max-objects\source\csound~\src\pthread.h(320): error C2011: 'timespec': 'struct' type redefinition
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\time.h(38): note: see declaration of 'timespec'
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1925): warning C4005: 'snprintf': macro redefinition
+  e:\my github\aug\max-objects\source\csound~\src\commondefs.h(46): note: see previous definition of 'snprintf'
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1927): fatal error C1189: #error:  Macro definition of snprintf conflicts with Standard Library function declaration
+  memory.c
+e:\my github\aug\max-objects\source\csound~\src\pthread.h(320): error C2011: 'timespec': 'struct' type redefinition
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\time.h(38): note: see declaration of 'timespec'
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1925): warning C4005: 'snprintf': macro redefinition
+  e:\my github\aug\max-objects\source\csound~\src\commondefs.h(46): note: see previous definition of 'snprintf'
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1927): fatal error C1189: #error:  Macro definition of snprintf conflicts with Standard Library function declaration
+  midi.c
+e:\my github\aug\max-objects\source\csound~\src\pthread.h(320): error C2011: 'timespec': 'struct' type redefinition
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\time.h(38): note: see declaration of 'timespec'
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1925): warning C4005: 'snprintf': macro redefinition
+  e:\my github\aug\max-objects\source\csound~\src\commondefs.h(46): note: see previous definition of 'snprintf'
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1927): fatal error C1189: #error:  Macro definition of snprintf conflicts with Standard Library function declaration
+  sequencer.c
+e:\my github\aug\max-objects\source\csound~\src\pthread.h(320): error C2011: 'timespec': 'struct' type redefinition
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\time.h(38): note: see declaration of 'timespec'
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1925): warning C4005: 'snprintf': macro redefinition
+  e:\my github\aug\max-objects\source\csound~\src\commondefs.h(46): note: see previous definition of 'snprintf'
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1927): fatal error C1189: #error:  Macro definition of snprintf conflicts with Standard Library function declaration
+  util.c
+e:\my github\aug\max-objects\source\csound~\src\pthread.h(320): error C2011: 'timespec': 'struct' type redefinition
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\time.h(38): note: see declaration of 'timespec'
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1925): warning C4005: 'snprintf': macro redefinition
+  e:\my github\aug\max-objects\source\csound~\src\commondefs.h(46): note: see previous definition of 'snprintf'
+c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1927): fatal error C1189: #error:  Macro definition of snprintf conflicts with Standard Library function declaration
+  Generating Code...

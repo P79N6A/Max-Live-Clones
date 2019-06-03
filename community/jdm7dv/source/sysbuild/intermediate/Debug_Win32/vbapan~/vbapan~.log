@@ -1,0 +1,36 @@
+﻿  vbapan~.c
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(211): warning C4244: '=': conversion from 't_double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(212): warning C4244: '=': conversion from 't_double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(249): warning C4244: '=': conversion from 't_double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(250): warning C4244: '=': conversion from 't_double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(255): warning C4244: 'function': conversion from 't_double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(349): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(353): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(378): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(386): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(387): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(394): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(416): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(417): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(472): warning C4244: 'function': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(480): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(481): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(485): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(510): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(511): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(599): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(601): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(608): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(609): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(661): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(662): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(763): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(764): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(836): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(969): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(988): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(1020): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\vbapan\vbapan~.c(1021): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(1205,5): warning MSB8012: TargetPath(D:\Projects\Ableton-User-Group\moogvst\my_externals\source\vbapan\..\ThirdParty\Max7-sdk\source\c74support\..\..\externals\vbapan~.mxe64) does not match the Linker's OutputFile property value (D:\Projects\Ableton-User-Group\moogvst\my_externals\source\ThirdParty\Max7-sdk\externals\vbapan~.mxe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(1206,5): warning MSB8012: TargetExt(.mxe64) does not match the Linker's OutputFile property value (.mxe). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+LINK : fatal error LNK1104: cannot open file 'MaxAPI.lib'

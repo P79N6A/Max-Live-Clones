@@ -1,0 +1,19 @@
+﻿  dllmain_win.c
+  ramp.c
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(206): warning C4244: '=': conversion from 't_atom_long' to 'long', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(217): warning C4244: '=': conversion from 'double' to 'long', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(259): warning C4244: '=': conversion from 'float' to 'long', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(271): warning C4244: 'function': conversion from 'long' to 'short', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(186): warning C4244: 'initializing': conversion from 'double' to 'long', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(341): warning C4244: 'function': conversion from 'double' to 't_atom_long', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(345): warning C4244: 'function': conversion from 'long' to 'short', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(385): warning C4244: 'function': conversion from 'double' to 't_atom_long', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(389): warning C4244: 'function': conversion from 'double' to 't_atom_long', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(472): warning C4244: '=': conversion from 't_atom_long' to 'long', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(482): warning C4244: 'function': conversion from 'long' to 'short', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(506): warning C4244: 'function': conversion from 'long' to 'short', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(521): warning C4244: '=': conversion from 'unsigned short' to 'unsigned char', possible loss of data
+d:\projects\ableton-user-group\moogvst\my_externals\source\ramp\ramp.c(570): warning C4244: 'function': conversion from 'long' to 'short', possible loss of data
+  Generating Code...
+     Creating library ..\sysbuild\intermediate\Debug_x64\ramp\ramp.lib and object ..\sysbuild\intermediate\Debug_x64\ramp\ramp.exp
+  ramp.vcxproj -> D:\Projects\Ableton-User-Group\moogvst\my_externals\source\ramp\..\..\externals\ramp.mxe64
