@@ -1,0 +1,8 @@
+﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  commonsyms.c
+  uioptimized.c
+e:\my creative cloud\aug\max-live-clones\source\ui\uioptimized\uioptimized.c(226): warning C4244: 'initializing': conversion from 't_atom_long' to 'long', possible loss of data
+  dllmain_win.c
+  Generating Code...
+     Creating library ..\..\sysbuild\intermediate\Debug_x64\uioptimized\uioptimized.lib and object ..\..\sysbuild\intermediate\Debug_x64\uioptimized\uioptimized.exp
+  uioptimized.vcxproj -> E:\My Creative Cloud\AUG\Max-Live-Clones\source\ui\uioptimized\..\..\c74support\..\..\externals\uioptimized.mxe64

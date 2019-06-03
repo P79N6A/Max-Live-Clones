@@ -1,0 +1,4 @@
+per-file intl-*=file://INTL_OWNERS
+per-file *-intl*=file://INTL_OWNERS
+
+# COMPONENT: Blink>JavaScript
